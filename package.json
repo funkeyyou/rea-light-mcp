@@ -1,0 +1,23 @@
+{
+  "name": "rea-light-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A lightweight, stateful REA MCP gateway for Codex with on-demand tool schemas and paged Evidence.",
+  "type": "module",
+  "license": "MIT",
+  "repository": "https://github.com/funkeyyou/rea-light-mcp",
+  "engines": { "node": "^22.19.0 || ^24.11.0 || >=26.0.0" },
+  "scripts": {
+    "test": "node --test test.mjs install.test.mjs",
+    "smoke": "node smoke.mjs",
+    "install:codex": "node install.mjs",
+    "uninstall:codex": "node install.mjs --uninstall"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/client": "2.3.1",
+    "@modelcontextprotocol/server": "2.3.1",
+    "rea-agents": "6.4.0",
+    "smol-toml": "1.9.1",
+    "zod": "4.4.3"
+  }
+}

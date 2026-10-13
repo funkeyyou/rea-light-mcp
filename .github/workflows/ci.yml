@@ -1,0 +1,34 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.18.0'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm test
+      - run: npm run smoke
+      - name: Windows PowerShell installer
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $target = Join-Path $env:RUNNER_TEMP 'rea-light-install smoke'
+          ./install.ps1 -SourceDirectory $PWD.Path -CodexHome $target -NoSkill
+          $record = Get-Content (Join-Path $target 'rea-light-install.json') -Raw | ConvertFrom-Json
+          $installer = $record.installedEntry.args[0] -replace 'server\.mjs$', 'install.mjs'
+          & node $installer --codex-home $target --uninstall
+          if ($LASTEXITCODE -ne 0) { throw 'Uninstall failed' }
