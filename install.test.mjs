@@ -48,8 +48,9 @@ test('installation retains original REA policy and environment; uninstall keeps 
 test('fresh install and repeated install restore the original missing registration', async t => {
   const p = await context(t);
   await writeFile(p.config, 'model = "untouched"\n');
-  await install({ ...p, noSkill: true });
-  await install({ ...p, noSkill: true });
+  const options = { ...p, noSkill: true, root: join(p.home, 'custom checkout with spaces') };
+  await install(options);
+  await install(options);
   await uninstall(p);
   assert.deepEqual(plain(parse(await readFile(p.config, 'utf8'))), { model: 'untouched' });
 });

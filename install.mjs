@@ -96,7 +96,8 @@ export async function install(options = {}) {
   const previous = await absent(p.state);
   const previousState = previous ? JSON.parse(previous) : null;
   const originalEntry = config.mcp_servers?.rea ?? null;
-  if (originalEntry && !isRea(originalEntry)) throw new Error('The "rea" MCP name belongs to a different server. Rename it before installing REA Light.');
+  const managed = previousState && canonical(previousState.installedEntry) === canonical(originalEntry);
+  if (originalEntry && !isRea(originalEntry) && !managed) throw new Error('The "rea" MCP name belongs to a different server. Rename it before installing REA Light.');
   const entry = { ...(originalEntry || {}), enabled: true, command: process.execPath, args: [join(options.root || root, 'server.mjs')], startup_timeout_sec: originalEntry?.startup_timeout_sec ?? 30, tool_timeout_sec: 3600 };
   for (const field of ['url', 'http_headers', 'env_http_headers', 'bearer_token_env_var', 'oauth_resource']) delete entry[field];
   if (entry.env) {
@@ -147,7 +148,7 @@ export async function install(options = {}) {
       updatedSkill = skillOriginal.slice(0, end) + `\n\n${marked}\n` + skillOriginal.slice(end);
     }
   }
-  const reinstall = previousState && canonical(previousState.installedEntry) === canonical(originalEntry);
+  const reinstall = managed;
   const state = {
     version: 1, installedEntry: entry, originalEntry: reinstall ? previousState.originalEntry : originalEntry,
     backup, skillPath, skillOriginal: reinstall && previousState.skillPath === skillPath ? previousState.skillOriginal : skillOriginal,
