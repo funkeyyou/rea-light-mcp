@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-version=1.0.0
+version=1.1.0
 codex_dir="${CODEX_HOME:-$HOME/.codex}"
 node_path=$(command -v node) || { echo 'Install Node.js 24.22.1+ LTS first.' >&2; exit 1; }
 command -v npm >/dev/null || { echo 'npm is required.' >&2; exit 1; }

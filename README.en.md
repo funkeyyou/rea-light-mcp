@@ -19,18 +19,17 @@ dependency; a global REA CLI is unnecessary. Native analysis still needs the
 appropriate user-configured engine. The installer does not install external
 engines or modify unrelated software.
 
-The release commands below still install v1.0.0 with REA 6.4.0. Use the source installation below for REA 6.8.0.
 
 Windows PowerShell:
 
 ```powershell
-$p = Join-Path $env:TEMP 'rea-light-install.ps1'; Invoke-WebRequest 'https://raw.githubusercontent.com/funkeyyou/rea-light-mcp/v1.0.0/install.ps1' -OutFile $p; powershell -NoProfile -ExecutionPolicy Bypass -File $p
+$p = Join-Path $env:TEMP 'rea-light-install.ps1'; Invoke-WebRequest 'https://raw.githubusercontent.com/funkeyyou/rea-light-mcp/v1.1.0/install.ps1' -OutFile $p; powershell -NoProfile -ExecutionPolicy Bypass -File $p
 ```
 
 macOS / Linux:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/funkeyyou/rea-light-mcp/v1.0.0/install.sh -o /tmp/rea-light-install.sh && bash /tmp/rea-light-install.sh
+curl -fsSL https://raw.githubusercontent.com/funkeyyou/rea-light-mcp/v1.1.0/install.sh -o /tmp/rea-light-install.sh && bash /tmp/rea-light-install.sh
 ```
 
 The installer verifies the release SHA-256, creates a separate version directory,
