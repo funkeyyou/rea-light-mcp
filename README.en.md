@@ -7,17 +7,19 @@ Codex sees four tools at startup and retrieves individual schemas only when
 needed. All backend operations remain available. This is an independent adapter,
 not an official REA or OpenAI project.
 
-Measured with REA 6.4.0: the serialized tool catalog drops from 170 tools /
-1,954,674 characters to four tools / 2,784 characters, about 99.86% smaller.
+Measured with REA 6.8.0 on Windows: the serialized tool catalog drops from 229 tools /
+3,504,966 characters to four tools / 2,784 characters, about 99.92% smaller.
 These are character counts, not exact token savings. Other instructions, tools
 and conversation history still consume context.
 
 ## Install
 
-Requires Node.js 24.11+ LTS, 22.19+, or 26+. Pinned REA 6.4.0 is installed as a
+The source version requires Node.js ^22.23.4, ^24.22.1, or >=26.12.1. Pinned REA 6.8.0 is installed as a
 dependency; a global REA CLI is unnecessary. Native analysis still needs the
 appropriate user-configured engine. The installer does not install external
 engines or modify unrelated software.
+
+The release commands below still install v1.0.0 with REA 6.4.0. Use the source installation below for REA 6.8.0.
 
 Windows PowerShell:
 

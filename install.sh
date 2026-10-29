@@ -2,9 +2,9 @@
 set -euo pipefail
 version=1.0.0
 codex_dir="${CODEX_HOME:-$HOME/.codex}"
-node_path=$(command -v node) || { echo 'Install Node.js 24.11+ LTS first.' >&2; exit 1; }
+node_path=$(command -v node) || { echo 'Install Node.js 24.22.1+ LTS first.' >&2; exit 1; }
 command -v npm >/dev/null || { echo 'npm is required.' >&2; exit 1; }
-"$node_path" -e 'const [a,b]=process.versions.node.split(".").map(Number);if(!((a===22&&b>=19)||(a===24&&b>=11)||a>=26))process.exit(1)' || { echo 'Install Node.js 24.11+ LTS first.' >&2; exit 1; }
+"$node_path" -e 'const [a,b,c]=process.versions.node.split(".").map(Number);if(!((a===22&&(b>23||b===23&&c>=4))||(a===24&&(b>22||b===22&&c>=1))||(a===26&&(b>12||b===12&&c>=1))||a>26))process.exit(1)' || { echo 'Install Node.js 24.22.1+ LTS first.' >&2; exit 1; }
 task_temp=$(mktemp -d)
 asset="rea-light-mcp-v$version.tar.gz"
 release="https://github.com/funkeyyou/rea-light-mcp/releases/download/v$version"

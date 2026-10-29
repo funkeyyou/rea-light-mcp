@@ -117,7 +117,7 @@ export async function install(options = {}) {
     }
     skillPath ||= candidates[0];
   }
-  const plan = { config: p.config, command: entry.command, args: entry.args, skill: skillPath, backend: 'bundled REA 6.4.0, launched with Node (no shell)' };
+  const plan = { config: p.config, command: entry.command, args: entry.args, skill: skillPath, backend: 'bundled REA 6.8.0, launched with Node (no shell)' };
   if (options.dryRun) return plan;
   const backup = join(p.codexHome, 'backups', `rea-light-${new Date().toISOString().replaceAll(':', '-')}-${randomUUID()}`);
   await mkdir(backup, { recursive: true, mode: 0o700 });

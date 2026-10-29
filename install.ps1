@@ -12,7 +12,7 @@ if (-not $CodexHome) {
 }
 $node = (Get-Command node -ErrorAction Stop).Source
 $npm = (Get-Command npm.cmd -ErrorAction Stop).Source
-& $node -e "const [a,b]=process.versions.node.split('.').map(Number);if(!((a===22&&b>=19)||(a===24&&b>=11)||a>=26)){console.error('Install Node.js 24.11+ LTS first.');process.exit(1)}"
+& $node -e "const [a,b,c]=process.versions.node.split('.').map(Number);if(!((a===22&&(b>23||b===23&&c>=4))||(a===24&&(b>22||b===22&&c>=1))||(a===26&&(b>12||b===12&&c>=1))||a>26)){console.error('Install Node.js 24.22.1+ LTS first.');process.exit(1)}"
 if ($LASTEXITCODE -ne 0) { throw 'Unsupported Node.js version.' }
 $taskTemp = Join-Path ([IO.Path]::GetTempPath()) ('rea-light-' + [guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $taskTemp | Out-Null
