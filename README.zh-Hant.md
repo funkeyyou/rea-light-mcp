@@ -4,23 +4,23 @@
 
 讓 Codex 只常駐載入 4 個小工具，需要時才查詢及呼叫完整的 [REA](https://github.com/morluto/rea) 功能。保留同一個後端程序、分析目標與 Evidence；大型結果完整存檔，再按需讀取。
 
-REA 6.8.0 在 Windows 實測工具定義從 3,504,966 字元降到 2,784 字元，減少約 99.92%。這是工具定義大小，實際 token 用量仍包含系統指令、其他工具及歷史。此專案是獨立適配器。
+REA 6.9.0 在 Windows 實測工具定義從 4,655,032 字元降到 2,784 字元，減少約 99.94%。這是工具定義大小，實際 token 用量仍包含系統指令、其他工具及歷史。此專案是獨立適配器。
 
 ## 安裝
 
-原始碼版本需要 Node.js ^22.23.4、^24.22.1 或 >=26.12.1。REA 6.8.0 會隨依賴安裝，不需先安裝全域 CLI。原生分析所需的引擎仍由使用者自行配置。
+原始碼版本需要 Node.js ^22.23.4、^24.22.1 或 >=26.12.1。REA 6.9.0 會隨依賴安裝，不需先安裝全域 CLI。原生分析所需的引擎仍由使用者自行配置。
 
 
 Windows PowerShell：
 
 ```powershell
-$p = Join-Path $env:TEMP 'rea-light-install.ps1'; Invoke-WebRequest 'https://raw.githubusercontent.com/funkeyyou/rea-light-mcp/v1.1.0/install.ps1' -OutFile $p; powershell -NoProfile -ExecutionPolicy Bypass -File $p
+$p = Join-Path $env:TEMP 'rea-light-install.ps1'; Invoke-WebRequest 'https://raw.githubusercontent.com/funkeyyou/rea-light-mcp/v1.2.0/install.ps1' -OutFile $p; powershell -NoProfile -ExecutionPolicy Bypass -File $p
 ```
 
 macOS / Linux：
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/funkeyyou/rea-light-mcp/v1.1.0/install.sh -o /tmp/rea-light-install.sh && bash /tmp/rea-light-install.sh
+curl -fsSL https://raw.githubusercontent.com/funkeyyou/rea-light-mcp/v1.2.0/install.sh -o /tmp/rea-light-install.sh && bash /tmp/rea-light-install.sh
 ```
 
 安裝器校驗發布包、安裝到獨立版本目錄、測試 MCP、備份並修改 `[mcp_servers.rea]`，同時加入輕量 skill 指引。其他設定與 REA 環境變數保留。支援自訂 `CODEX_HOME`。

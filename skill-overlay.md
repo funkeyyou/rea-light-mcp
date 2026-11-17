@@ -25,3 +25,8 @@ UI. Errors, limitations and partial coverage remain authoritative. Backend
 loss never silently restarts or retries an analysis. Standard REA setup can
 overwrite this custom registration and skill overlay; rerun this adapter's
 installer after intentionally refreshing standard REA setup.
+
+REA 6.9 defaults to at most 1,024 MCP input elements. If full inline Evidence
+or result_refs exceeds this allowance, use the retained-evidence ID or the
+operation's evidence-file source. Preserve the upstream error; do not retry
+unchanged arguments. The gateway does not raise production input limits.

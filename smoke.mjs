@@ -8,7 +8,8 @@ import { loadSdk } from './sdk.mjs';
 const sdk = loadSdk();
 const root = await mkdtemp(join(tmpdir(), 'rea-light-smoke-'));
 const client = new sdk.Client({ name: 'rea-light-smoke', version: '1' }, { capabilities: {} });
-const transport = new sdk.StdioClientTransport({ command: process.execPath, args: [fileURLToPath(new URL('./server.mjs', import.meta.url))], env: { ...process.env, REA_LIGHT_RESULTS_DIR: join(root, 'results') }, stderr: 'inherit' });
+// This test intentionally sends full inline Evidence back through result_refs; REA 6.9 defaults to 1024 input elements.
+const transport = new sdk.StdioClientTransport({ command: process.execPath, args: [fileURLToPath(new URL('./server.mjs', import.meta.url))], env: { ...process.env, REA_MCP_MAX_INPUT_ELEMENTS: '100000', REA_LIGHT_RESULTS_DIR: join(root, 'results') }, stderr: 'inherit' });
 const read = result => { assert.notEqual(result.isError, true, JSON.stringify(result)); return JSON.parse(result.content[0].text); };
 async function call(name, args) { return client.callTool({ name, arguments: args }, { timeout: 90000 }); }
 async function complete(result) {

@@ -8,14 +8,14 @@
 
 ## 效果
 
-REA 6.8.0 在 Windows 上的工具清单实测：
+REA 6.9.0 在 Windows 上的工具清单实测：
 
 | | 原始 REA MCP | REA Light MCP |
 |---|---:|---:|
-| 常驻工具 | 229 | 4 |
-| 序列化工具定义 | 3,504,966 字符 | 2,784 字符 |
+| 常驻工具 | 255 | 4 |
+| 序列化工具定义 | 4,655,032 字符 | 2,784 字符 |
 
-工具定义大小减少约 **99.92%**。这是字符数，不是精确 token 数；系统指令、其他工具和历史消息仍会占用上下文。
+工具定义大小减少约 **99.94%**。这是字符数，不是精确 token 数；系统指令、其他工具和历史消息仍会占用上下文。
 
 - 保留全部 REA 后端工具，按需搜索和调用。
 - 同一个 MCP 连接保留一个后端进程，延续当前目标和 Evidence。
@@ -25,19 +25,19 @@ REA 6.8.0 在 Windows 上的工具清单实测：
 
 ## 安装
 
-源码版本需要 Node.js ^22.23.4、^24.22.1 或 >=26.12.1。无须先安装全局 REA；固定版本 REA 6.8.0 会作为项目依赖安装。原生分析仍需要相应分析引擎。
+源码版本需要 Node.js ^22.23.4、^24.22.1 或 >=26.12.1。无须先安装全局 REA；固定版本 REA 6.9.0 会作为项目依赖安装。原生分析仍需要相应分析引擎。
 
 
 ### Windows PowerShell
 
 ```powershell
-$p = Join-Path $env:TEMP 'rea-light-install.ps1'; Invoke-WebRequest 'https://raw.githubusercontent.com/funkeyyou/rea-light-mcp/v1.1.0/install.ps1' -OutFile $p; powershell -NoProfile -ExecutionPolicy Bypass -File $p
+$p = Join-Path $env:TEMP 'rea-light-install.ps1'; Invoke-WebRequest 'https://raw.githubusercontent.com/funkeyyou/rea-light-mcp/v1.2.0/install.ps1' -OutFile $p; powershell -NoProfile -ExecutionPolicy Bypass -File $p
 ```
 
 ### macOS / Linux
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/funkeyyou/rea-light-mcp/v1.1.0/install.sh -o /tmp/rea-light-install.sh && bash /tmp/rea-light-install.sh
+curl -fsSL https://raw.githubusercontent.com/funkeyyou/rea-light-mcp/v1.2.0/install.sh -o /tmp/rea-light-install.sh && bash /tmp/rea-light-install.sh
 ```
 
 安装器校验发布包的 SHA-256，下载到独立版本目录，安装依赖并测试 MCP，最后替换 `[mcp_servers.rea]`。旧版正在运行时不会覆盖它的程序文件。`CODEX_HOME` 自定义路径也支持。
