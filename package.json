@@ -1,6 +1,6 @@
 {
   "name": "rea-light-mcp",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "private": true,
   "description": "A lightweight, stateful REA MCP gateway for Codex with on-demand tool schemas and paged Evidence.",
   "type": "module",
@@ -18,7 +18,7 @@
   "dependencies": {
     "@modelcontextprotocol/client": "2.3.1",
     "@modelcontextprotocol/server": "2.3.1",
-    "rea-agents": "6.9.0",
+    "rea-agents": "6.10.1",
     "smol-toml": "1.9.1",
     "zod": "4.4.3"
   }

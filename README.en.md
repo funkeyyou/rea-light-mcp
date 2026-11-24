@@ -7,14 +7,14 @@ Codex sees four tools at startup and retrieves individual schemas only when
 needed. All backend operations remain available. This is an independent adapter,
 not an official REA or OpenAI project.
 
-Measured with REA 6.9.0 on Windows: the serialized tool catalog drops from 255 tools /
-4,655,032 characters to four tools / 2,784 characters, about 99.94% smaller.
+Measured with REA 6.10.1 on Windows: the serialized tool catalog drops from 263 tools /
+352,122 characters to four tools / 2,784 characters, about 99.21% smaller.
 These are character counts, not exact token savings. Other instructions, tools
 and conversation history still consume context.
 
 ## Install
 
-The source version requires Node.js ^22.23.4, ^24.22.1, or >=26.12.1. Pinned REA 6.9.0 is installed as a
+The source version requires Node.js ^22.23.4, ^24.22.1, or >=26.12.1. Pinned REA 6.10.1 is installed as a
 dependency; a global REA CLI is unnecessary. Native analysis still needs the
 appropriate user-configured engine. The installer does not install external
 engines or modify unrelated software.
@@ -23,13 +23,13 @@ engines or modify unrelated software.
 Windows PowerShell:
 
 ```powershell
-$p = Join-Path $env:TEMP 'rea-light-install.ps1'; Invoke-WebRequest 'https://raw.githubusercontent.com/funkeyyou/rea-light-mcp/v1.2.0/install.ps1' -OutFile $p; powershell -NoProfile -ExecutionPolicy Bypass -File $p
+$p = Join-Path $env:TEMP 'rea-light-install.ps1'; Invoke-WebRequest 'https://raw.githubusercontent.com/funkeyyou/rea-light-mcp/v1.3.0/install.ps1' -OutFile $p; powershell -NoProfile -ExecutionPolicy Bypass -File $p
 ```
 
 macOS / Linux:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/funkeyyou/rea-light-mcp/v1.2.0/install.sh -o /tmp/rea-light-install.sh && bash /tmp/rea-light-install.sh
+curl -fsSL https://raw.githubusercontent.com/funkeyyou/rea-light-mcp/v1.3.0/install.sh -o /tmp/rea-light-install.sh && bash /tmp/rea-light-install.sh
 ```
 
 The installer verifies the release SHA-256, creates a separate version directory,
